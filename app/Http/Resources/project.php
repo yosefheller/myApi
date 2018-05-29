@@ -15,7 +15,7 @@ class project extends JsonResource
     public function toArray($request)
     {
         return [
-            'type' => 'institution', 
+            'type' => 'project', 
             'id' => $this->id,
             "attributes"=>
             [
