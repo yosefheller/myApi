@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\institution;
 use App\Http\Resources\institution as institutionResource;
 use App\Http\Resources\institutions as institutionsResource;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class InstitutionsController extends Controller
 {
@@ -29,7 +30,21 @@ class InstitutionsController extends Controller
      */
     public function show($id)
     {
-      return new institutionResource(institution::find($id));
+        try{
+            institution::findOrFail($id);
+        }
+        catch(ModelNotFoundException $e){
+            return response()->json([
+                'error' => [
+                        'status' => '404',
+                        'source'  => [
+                            'pointer' => $_SERVER['REQUEST_URI']
+                        ],
+                        'detail' =>  'Resource not found.'
+                    ]
+            ], 404);  
+        }
+      return new institutionResource(institution::findOrFail($id));
     }
 
 }
