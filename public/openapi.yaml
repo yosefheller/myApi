@@ -1,0 +1,320 @@
+openapi: "3.0.1"
+info:
+  title: Yosef M Heller Api
+  description: 'Get up to date information about Yosef m Heller including his education, projects , roles. '
+  version: '1.0'
+  contact:
+    name: Moshe Heller
+    email: yosefmheller@gmail.com
+   
+servers:
+  - url: https://api.yosefmosheheller.com/
+paths:
+  /institutions: 
+    get:
+      tags:
+      - Institutions
+      summary: list of Institutions
+      description: gets full list of the education I got
+      operationId: listInstitutions
+      responses:
+        '200':
+          description: return all resource categories
+          content:
+            application/json:
+              schema:
+                type : object 
+                properties: 
+                  data:
+                    type: array
+                    items: 
+                      type : object  
+                      properties:
+                        type:
+                          type: string
+                        id:
+                          type: string 
+                        attributes:
+                          type: object
+                          properties:
+                            name:
+                              type: string 
+                  
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/errors'
+  /institutions/{id}:
+    get:
+      tags:
+      - Institutions
+      summary: find Institution by id
+      description: finds by id a specific Institution including start and end date and emailcontact_email
+      operationId: listSpecificInstitution
+      parameters:
+      - in: path
+        name: id
+        description: id to find a specific Institution
+        schema: 
+          type: string
+        required:
+          true
+      responses:
+        '200':
+          description: return all resource categories
+          content:
+            application/json:
+              schema:
+                type : object 
+                properties: 
+                  data:
+                    type: array
+                    items: 
+                      type : object  
+                      properties:
+                        type:
+                          type: string
+                        id:
+                          type: string 
+                        attributes:
+                          type: object
+                          properties:
+                            name:
+                              type: string 
+                            startdate:
+                              type: string 
+                            endDate:
+                              type: string 
+                            contactEmail:
+                              type: string 
+                  
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/errors'              
+  /projects:
+     get:
+      tags:
+      - projects
+      summary: list of my projects
+      description: gets the full list of my projects
+      operationId: listProjects
+      responses:
+        '200':
+          description: return all resource categories
+          content:
+            application/json:
+              schema:
+                type : object 
+                properties: 
+                  data:
+                    type: array
+                    items: 
+                      type : object  
+                      properties:
+                        type:
+                          type: string
+                        id:
+                          type: string 
+                        attributes:
+                          type: object
+                          properties:
+                            name:
+                              type: string 
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/errors'
+  /projects/{id}:
+    get:
+      tags:
+      - projects
+      summary: find a project by id
+      description: finds by id a specific projects 
+      operationId: listSpecificProjects
+      parameters:
+      - in: path
+        name: id
+        description: id to find a specific projects
+        schema: 
+          type: string
+        required:
+          true
+      responses:
+        '200':
+          description: return all resource categories
+          content:
+            application/json:
+              schema:
+                type : object 
+                properties: 
+                  data:
+                    type: array
+                    items: 
+                      type : object  
+                      properties:
+                        type:
+                          type: string
+                        id:
+                          type: string 
+                        attributes:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            description:  
+                              type: string
+                            launchDate:  
+                              type: string
+                            link:
+                              type: string
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/errors'
+  /roles:
+     get:
+      tags:
+      - roles
+      summary: list of my roles
+      description: gets the full list of my roles
+      operationId: listRoles
+      responses:
+        '200':
+          description: return all resource categories
+          content:
+            application/json:
+              schema:
+                type : object 
+                properties: 
+                  data:
+                    type: array
+                    items: 
+                      type : object  
+                      properties:
+                        type:
+                          type: string
+                        id:
+                          type: string 
+                        attributes:
+                          type: object
+                          properties:
+                            name:
+                              type: string 
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/errors'
+  /roles/{id}:
+    get:
+      tags:
+      - roles
+      summary: find a role by id
+      description: finds by id a specific roles 
+      operationId: listSpecificRole
+      parameters:
+      - in: path
+        name: id
+        description: id to find a specific role
+        schema: 
+          type: string
+        required:
+          true
+      responses:
+        '200':
+          description: return all resource categories
+          content:
+            application/json:
+              schema:
+                type : object 
+                properties: 
+                  data:
+                    type: array
+                    items: 
+                      type : object  
+                      properties:
+                        type:
+                          type: string
+                        id:
+                          type: string 
+                        attributes:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            startdate:
+                              type: string 
+                            endDate:
+                              type: string 
+                            contactEmail:
+                              type: string 
+        '404':
+          description: Not found response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/errors'
+components:
+  schemas:
+    errors:
+      type: array
+      items:
+        type: object
+        properties:
+          status:
+            type: string
+          source:
+            type: object
+            properties:
+              pointer:
+                type: string
+          detail:
+            type: string
